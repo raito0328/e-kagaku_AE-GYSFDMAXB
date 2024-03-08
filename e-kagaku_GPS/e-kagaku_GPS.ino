@@ -1,8 +1,7 @@
-#include <Wire.h>
 #include <SoftwareSerial.h> //シリアル通信用のライブラリ
 #include <TinyGPS++.h>
 
-SoftwareSerial gps(10, 11); //GPS のシリアル通信ポートの割り当て RX2 番ピン，TX3 番ピン
+SoftwareSerial gps(10, 11); //GPS のシリアル通信ポートの割り当て RX11 番ピン，TX10 番ピン
 TinyGPSPlus tinyGPS;
 
 void setup() {
@@ -20,10 +19,10 @@ void loop() {
   smartDelay(1000);
 }
 
-void smartDelay(unsigned long ms){
- unsigned long start = millis();
- do{
- while(gps.available())
- tinyGPS.encode(gps.read());
- }while(millis()-start<ms);
+void smartDelay(unsigned long ms) {
+  unsigned long start = millis();
+  do {
+    while (gps.available())
+      tinyGPS.encode(gps.read());
+  } while (millis() - start < ms);
 }
